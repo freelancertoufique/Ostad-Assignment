@@ -30,8 +30,24 @@ class Student(Person):
         if course not in self.courses:
             self.courses.append(course)
 
-ob1 = Student(name="Toufique Ahamed", age=20, address = 'Khulna', student_id='S12345')
-ob1.add_grade('Math', 90)
-ob1.add_course('Computer Science')
-print(ob1.grades)
-print(ob1.courses)
+    def display_student_info(self):
+        self.display_person_info()
+        print(f"Student ID: {self.student_id}")
+        print("Courses: ", ", ".join(self.courses)if self.courses else "None")
+        print(f'Grades: {self.grades}' if self.grades else "None")
+
+#===========Creating a Class with the naem Course========================
+class Course:
+    def __init__(self,course_name, course_code, instructor):
+        self.course_name = course_name
+        self.course_code = course_code
+        self.instructor = instructor
+        self.students = []
+    def add_student(self, student_id):
+        if student_id not in self.students:
+            self.students.append(student_id)
+    def display_course_info(self):
+        print(f'Course Name: {self.course_name}')
+        print(f'Course Code: {self.course_code}')
+        print(f'Instructor: {self.instructor}')
+        print(f'Students Enrolled: {', '.join(self.students) if self.students else "None"}')
