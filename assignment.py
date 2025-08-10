@@ -51,3 +51,47 @@ class Course:
         print(f'Course Code: {self.course_code}')
         print(f'Instructor: {self.instructor}')
         print(f'Students Enrolled: {', '.join(self.students) if self.students else "None"}')
+
+#================Creating a class for Student Mangement System====================
+
+class System_functionalities:
+    def __init__(self):
+        self.students = {}
+        self.courses = {}
+    
+    #=================Method to add a student========================
+
+    def add_student(self, name, age, address, student_id):
+        if student_id in self.students:
+            print(f"Student with ID {student_id} already exists.")
+            return
+        
+        student = Student(name, age, address, student_id)
+        self.students[student_id] = student
+        print(f'Student {name} (ID: {student_id}) added successfully.')
+
+    #=================Method to add a course========================
+
+    def add_course(self, course_name, course_code, instructor):
+        if course_code in self.courses:
+            print(f'Course with code {course_code} already exists.')
+            return
+        course = Course(course_name, course_code, instructor)
+        self.courses[course_code] = course
+        print(f'Course {course_name} (Code: {course_code}) added successfully.')
+    
+#=============Method for how many student enrolled in a course ==============
+
+
+    def enroll_student_in_course(self, student_id, course_code):
+        if student_id not in self.students:
+            print(f'Student with ID {student_id} does not exist.')
+            return
+        if course_code not in self.courses:
+            print(f'Course with code {course_code} does not exist.')
+            return
+        student = self.students[student_id]
+        course = self.courses[course_code]
+        student.add_course(course_code)
+        course.add_student(student_id)
+        print(f'Student {student.name} (ID: {student_id}) enrolled in {course.course_name} (Code: {course_code})')
